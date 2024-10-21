@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Number Guessing Game</title>
+    <style>
+        body {
+            background-color: black;
+            color: white;
+            font-family: Arial, sans-serif;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+        input[type="text"] {
+            width: 50px;
+            font-size: 24px;
+            text-align: center;
+            margin: 5px;
+        }
+        #message {
+            margin-top: 20px;
+            font-size: 24px;
+        }
+        #hint, #hint2, #hint3 {
+            margin-top: 20px;
+            font-size: 18px;
+            display: none; /* Initially hidden */
+            max-width: 400px; /* Limit the width of the hint */
+            text-align: center; /* Center the text */
+            word-wrap: break-word; /* Ensure long words break appropriately */
+        }
+        #timer, #timer2, #timer3 {
+            font-size: 18px;
+            margin-top: 15px;
+            max-width: 500px; /* Limit the width of the timer text */
+            text-align: center; /* Center the text */
+        }
+        img {
+            max-width: 150px;
+            margin-bottom: 20px;
+        }
+        p {
+            margin-top: 15px;
+            font-size: 16px;
+            text-align: center;
+            width: 80%;
+            max-width: 500px; /* Limit the paragraph width */
+        }
+    </style>
+</head>
+<body>
+
+    <img src="https://imgur.com/kfYsKfs.png" alt="Centered Image" style="width: 500px; height: auto;">
+
+    <h1>Enter 3 Digits</h1>
+
+    <p>There 3 digits are hidden from 3 of the previous items you (might) have found (already).</p>
+
+    <div>
+        <input type="text" id="digit1" maxlength="1">
+        <input type="text" id="digit2" maxlength="1">
+        <input type="text" id="digit3" maxlength="1">
+    </div>
+
+    <button onclick="checkAnswer()">Submit</button>
+
+    <div id="message"></div>
+    <p><b>IF YOU REFRESH THIS PAGE, THE HINT COUNTDOWN TIMERS WILL RESTART!!</b></p>
+
+    <div id="timer">Hint 1 will be revealed in: <span id="countdown">5</span> seconds</div>
+    
+    <div id="hint">Hint 1: Look VERY closely at the newspaper featuring Michael Myers.</div>
+
+    <div id="timer2">Hint 2 will be revealed in: <span id="countdown2">10</span> seconds</div>
+
+    <div id="hint2">Hint 2: You might need to use an alternative light source!</div>
+
+    <div id="timer3">Hint 3 will be revealed in: <span id="countdown3">15</span> seconds</div>
+
+    <div id="hint3">Hint 3: Find the 3 masks resembling the masks in the newspaper! There, you'll find the correct digits</div>
+
+    <script>
+        function checkAnswer() {
+            const correctDigits = ['9', '4', '5'];
+            const digit1 = document.getElementById('digit1').value;
+            const digit2 = document.getElementById('digit2').value;
+            const digit3 = document.getElementById('digit3').value;
+
+            if (digit1 === correctDigits[0] && digit2 === correctDigits[1] && digit3 === correctDigits[2]) {
+                document.getElementById('message').innerText = "If you found all the other clues, you have won! If not, keep looking for the others!";
+            } else {
+                document.getElementById('message').innerText = "TRY AGAIN";
+            }
+        }
+
+        // Countdown timer for the hint
+        let timeLeft = 5;
+        const countdownElement = document.getElementById('countdown');
+        const hintElement = document.getElementById('hint');
+
+        const countdownInterval = setInterval(function() {
+            timeLeft--;
+            countdownElement.textContent = timeLeft;
+
+            if (timeLeft <= 0) {
+                clearInterval(countdownInterval);
+                hintElement.style.display = 'block'; // Show the hint
+                document.getElementById('timer').style.display = 'none'; // Hide the countdown
+            }
+        }, 1000); // Update every second
+
+    // Countdown timer for the second hint
+    let timeLeft2 = 10;
+    const countdownElement2 = document.getElementById('countdown2');
+    const hintElement2 = document.getElementById('hint2');
+
+    const countdownInterval2 = setInterval(function() {
+        timeLeft2--;
+        countdownElement2.textContent = timeLeft2;
+
+        if (timeLeft2 <= 0) {
+            clearInterval(countdownInterval2);
+            hintElement2.style.display = 'block'; // Show the second hint
+            document.getElementById('timer2').style.display = 'none'; // Hide the second countdown
+        }
+    }, 1000); // Update every second
+
+
+        // Countdown timer for the third hint
+    let timeLeft3 = 15
+    const countdownElement3 = document.getElementById('countdown3');
+    const hintElement3 = document.getElementById('hint3');
+
+    const countdownInterval3 = setInterval(function() {
+        timeLeft3--;
+        countdownElement3.textContent = timeLeft3;
+
+        if (timeLeft3 <= 0) {
+            clearInterval(countdownInterval3);
+            hintElement3.style.display = 'block'; // Show the second hint
+            document.getElementById('timer3').style.display = 'none'; // Hide the second countdown
+        }
+    }, 1000); // Update every second
+</script>
+
+</body>
+</html>
