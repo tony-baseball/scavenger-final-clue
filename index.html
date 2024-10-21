@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Number Guessing Game</title>
+    <title>The Final Clue</title>
     <style>
         body {
             background-color: black;
@@ -23,26 +23,26 @@
             margin: 5px;
         }
         #message {
-            margin-top: 20px;
+            margin-top: 14px;
             font-size: 24px;
         }
         #hint, #hint2, #hint3 {
             margin-top: 20px;
-            font-size: 18px;
+            font-size: 12px;
             display: none; /* Initially hidden */
             max-width: 400px; /* Limit the width of the hint */
             text-align: center; /* Center the text */
             word-wrap: break-word; /* Ensure long words break appropriately */
         }
         #timer, #timer2, #timer3 {
-            font-size: 18px;
+            font-size: 12px;
             margin-top: 15px;
             max-width: 500px; /* Limit the width of the timer text */
             text-align: center; /* Center the text */
         }
         img {
             max-width: 150px;
-            margin-bottom: 20px;
+            margin-bottom: 0px;
         }
         p {
             margin-top: 15px;
@@ -57,16 +57,25 @@
 
     <img src="https://imgur.com/kfYsKfs.png" alt="Centered Image" style="width: 500px; height: auto;">
 
-    <h1>Enter 3 Digits</h1>
+<h1>The Final Clue</h1>
+<p> DO NOT REFRESH THIS PAGE</p>
+<p> A newspaper you’ve found holds one more surprise,<br>
+Look closely now, with sharper eyes.<br>
+Beyond the tale of Michael’s night,<br>
+A clover reveals your final fright.<br>
+<br>
+Three eerie faces, waiting there,<br>
+Find them again for the final scare.<br>
+Look closer now, their mystery grows,<br>
+Unveil the truth each one shows. </p>
 
-    <p>There 3 digits are hidden from 3 of the previous items you (might) have found (already).</p>
+<h4> ENTER 3 DIGITS </h4>
 
     <div>
         <input type="text" id="digit1" maxlength="1">
         <input type="text" id="digit2" maxlength="1">
         <input type="text" id="digit3" maxlength="1">
     </div>
-
     <button onclick="checkAnswer()">Submit</button>
 
     <div id="message"></div>
@@ -82,21 +91,30 @@
 
     <div id="timer3">Hint 3 will be revealed in: <span id="countdown3">15</span> seconds</div>
 
-    <div id="hint3">Hint 3: Find the 3 masks resembling the masks in the newspaper! There, you'll find the correct digits</div>
+    <div id="hint3">Hint 3: Find the 3 masks resembling the masks in the newspaper! In each mask, you'll find the correct digits</div>
 
     <script>
         function checkAnswer() {
-            const correctDigits = ['9', '4', '5'];
-            const digit1 = document.getElementById('digit1').value;
-            const digit2 = document.getElementById('digit2').value;
-            const digit3 = document.getElementById('digit3').value;
+    const correctDigits = ['9', '4', '5'];
+    const digit1 = document.getElementById('digit1').value;
+    const digit2 = document.getElementById('digit2').value;
+    const digit3 = document.getElementById('digit3').value;
 
-            if (digit1 === correctDigits[0] && digit2 === correctDigits[1] && digit3 === correctDigits[2]) {
-                document.getElementById('message').innerText = "If you found all the other clues, you have won! If not, keep looking for the others!";
-            } else {
-                document.getElementById('message').innerText = "TRY AGAIN";
-            }
-        }
+    if (digit1 === correctDigits[0] && digit2 === correctDigits[1] && digit3 === correctDigits[2]) {
+        document.getElementById('message').innerText = "CONGRATS YOU WON!";
+        
+        // Hide everything below the submit button
+        document.querySelector('p').style.display = 'none';
+        document.getElementById('timer').style.display = 'none';
+        document.getElementById('hint').style.display = 'none';
+        document.getElementById('timer2').style.display = 'none';
+        document.getElementById('hint2').style.display = 'none';
+        document.getElementById('timer3').style.display = 'none';
+        document.getElementById('hint3').style.display = 'none';
+    } else {
+        document.getElementById('message').innerText = "TRY AGAIN";
+    }
+}
 
         // Countdown timer for the hint
         let timeLeft = 5;
